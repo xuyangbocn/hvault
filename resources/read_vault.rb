@@ -36,6 +36,6 @@ node.run_state[new_resource.path] = secret
 
 # Whether or not this resource was updated
 # True = allows notifications to start
-updated_by_last_action(true)
+#updated_by_last_action(true)
 
 end

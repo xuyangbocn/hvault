@@ -4,8 +4,9 @@ maintainer_email 'you@example.com'
 license 'All Rights Reserved'
 description 'Installs/Configures hvault'
 long_description 'Installs/Configures hvault'
-version '0.1.1'
+version '0.1.3'
 chef_version '>= 14.0'
+gem 'vault'
 
 # The `issues_url` points to the location where issues for this cookbook are
 # tracked.  A `View Issues` link will be displayed on this cookbook's page when

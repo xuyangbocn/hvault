@@ -1,0 +1,7 @@
+DEPENDENCIES
+  hvault
+    path: .
+    metadata: true
+
+GRAPH
+  hvault (0.1.3)
