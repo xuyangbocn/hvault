@@ -20,15 +20,15 @@ Vault.address = new_resource.address
 Vault.token = new_resource.token
 
 if property_is_set?(:role_name) # Authenticate to Vault using the role_id
-approle_id = Vault.approle.role_id(new_resource.role_name)
-secret_id = (Vault.approle.create_secret_id(new_resource.role_name)).data[:secret_id]
-Vault.auth.approle(approle_id, secret_id)
+   approle_id = Vault.approle.role_id(new_resource.role_name)
+   secret_id = (Vault.approle.create_secret_id(new_resource.role_name)).data[:secret_id]
+   Vault.auth.approle(approle_id, secret_id)
 end
 
 # Attempt to read the secret
 secret = Vault.logical.read(new_resource.path)
 if secret.nil?
-raise "Could not read secret '#{new_resource.path}'!"
+   raise "Could not read secret '#{new_resource.path}'!"
 end
 
 # Store the secret in memory only
@@ -37,4 +37,5 @@ node.run_state[new_resource.path] = secret
 # Whether or not this resource was updated
 # True = allows notifications to start
 updated_by_last_action(true)
+
 end

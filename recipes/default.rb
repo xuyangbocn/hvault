@@ -4,23 +4,22 @@
 #
 # Copyright:: 2020, The Authors, All Rights Reserved.
 
+chef_gem 'vault' do
+  compile_time true
+end
 
 read_vault 'Read secret at secret/hello' do
 	path "secret/data/hello"
 	address 'http://127.0.0.1:8200'
-	token '96d0a802-fd00-5b57-87b4-0b15ed2dbe3c'
-	role_name 'chef-role'
-	notifies :create, "template[/etc/my-app/config]", :immediately
+    token 's.u8FYJTVRLd2pEOfkykyffpSd'
+    notifies :create, "file[/tmp/test.txt]", :immediately
 end
 
-template '/etc/my-app/config' do
-	source 'my-app.conf'
-	mode '0600'
+file '/tmp/test.txt' do
 	sensitive true
-	variables lazy {
+	content lazy {
 	{ 
-	:username => node.run_state["secret/hello"].data[:data][:foo], 
-	:password => node.run_state["secret/hello"].data[:data][:bar],
+	:foo => node.run_state["secret/hello"].data[:data][:foo], 
 	}
 	action :nothing
 end
