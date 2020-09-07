@@ -3,8 +3,9 @@
 Read secrets from Hashicorp Vault.
 
 
-**Preparation Steps:
+####Preparation steps:
 1. Start Hashicorp Vault server
+```bash
 $ vault server -dev
 ==> Vault server configuration:
 
@@ -12,7 +13,7 @@ $ vault server -dev
                      Cgo: disabled
          Cluster Address: https://127.0.0.1:8201
               Go Version: go1.14.7
-...
+```
 
 2. Set Environment variables to connect to Vault
 ```bash
@@ -22,7 +23,7 @@ $ export VAULT_TOKEN='s.u8FYJTVRLd2pEOfkykyffpSd'
 
 3. Create a secret in Hashicorp Vault
 ```bash
-$ vault kv put secret/hello password=Ch3fR0cks`
+$ vault kv put secret/hello password=Ch3fR0cks
 $ vault kv get secret/hello
 ```
 
