@@ -3,7 +3,7 @@
 Read secrets from Hashicorp Vault.
 
 
-###Preparation steps:
+### Preparation steps:
 1. Start Hashicorp Vault server
 ```bash
 $ vault server -dev
