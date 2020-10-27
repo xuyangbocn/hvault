@@ -4,7 +4,7 @@ maintainer_email 'you@example.com'
 license 'All Rights Reserved'
 description 'Installs/Configures hvault'
 long_description 'Installs/Configures hvault'
-version '0.1.3'
+version '0.1.8'
 chef_version '>= 14.0'
 gem 'vault'
 

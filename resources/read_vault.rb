@@ -13,6 +13,8 @@ property :token, String, required: true
 property :role_name, String, required: false
 
 action :read do
+Vault.ssl_verify = false
+
 # Need to set the vault address
 Vault.address = new_resource.address
 

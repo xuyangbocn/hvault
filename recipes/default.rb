@@ -11,9 +11,9 @@
 #hv = data_bag_item('secrets', 'hashi-vault')
 #puts hv[:token]
 
-read_vault 'Read secret kv-v2/my-secret' do
-	path "kv-v2/my-secret"
-	address 'http://gcc.gov.sg:8200'
+hvault_read_vault 'Read secret kv-v2/my-secret' do
+	path "gcs-sm-ns-gvt-aws-auth/kv-v2/my-secret"
+	address 'https://gcc.gov.sg:8200'
 	token 's.aePrn5xtnNr7H2FaTkkNwR0C'
 	notifies :create, "file[/tmp/test.txt]", :immediately
 end
