@@ -8,7 +8,7 @@
 #  compile_time true
 #end
 
-hv = data_bag_item('secrets', 'hashi-vault')
+#hv = data_bag_item('secrets', 'hashi-vault')
 #puts hv[:token]
 
 read_vault 'Read secret kv-v2/my-secret' do
