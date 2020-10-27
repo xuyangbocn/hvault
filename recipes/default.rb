@@ -11,17 +11,17 @@
 hv = data_bag_item('secrets', 'hashi-vault')
 #puts hv[:token]
 
-read_vault 'Read secret3 at secret/hello' do
-	path "secret/data/hello"
-	address 'http://127.0.0.1:8200'
-    token hv[:token]
-    notifies :create, "file[/tmp/test.txt]", :immediately
+read_vault 'Read secret kv-v2/my-secret' do
+	path "kv-v2/my-secret"
+	address 'http://gcc.gov.sg:8200'
+	token 's.aePrn5xtnNr7H2FaTkkNwR0C'
+	notifies :create, "file[/tmp/test.txt]", :immediately
 end
 
 file '/tmp/test.txt' do
 	sensitive true
 	content lazy {
-	"chef password is:#{node.run_state["secret/data/hello"].data[:data][:password]}"
+	"chef password is:#{node.run_state["kv-v2/my-secret"].data[:data][:password]}"
 	}
 	#action :nothing
 end
