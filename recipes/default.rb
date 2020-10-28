@@ -13,9 +13,15 @@ require 'vault'
 #hv = data_bag_item('secrets', 'hashi-vault')
 #puts hv[:token]
 
+Vault.configure do |config|
+	# The address of the Vault server, also read as ENV["VAULT_ADDR"]
+	config.address = "https://gcc.gov.sg:8200"
+	config.ssl_verify = false
+end 
 signature = `curl http://169.254.169.254/latest/dynamic/instance-identity/pkcs7`
 iam_role = `curl http://169.254.169.254/latest/meta-data/iam/security-credentials/`
-vault_token = Vault.auth.aws_ec2(iam_role, signature, nil) #"s.C0mnpOzkC2hDz9NJgZWSIyXp"
+vault_token = Vault.auth.aws_ec2(iam_role, signature, '/v1/gcs-sm-ns-gvt-aws-auth/login')
+# vault_token = Vault.auth.aws_ec2(iam_role, signature, nil) #"s.C0mnpOzkC2hDz9NJgZWSIyXp"
 
 hvault_read_vault 'Read secret kv-v2/my-secret' do
 	path "kv-v2/data/my-secret"
