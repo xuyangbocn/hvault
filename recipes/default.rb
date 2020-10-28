@@ -1,4 +1,5 @@
 require 'vault'
+require 'aws-sdk'
 
 #
 # Cookbook:: hvault
@@ -20,7 +21,7 @@ Vault.configure do |config|
 end
 
 iam_role = 'gvt-iam-auth-role'
-Vault.auth.aws_ec2(iam_role, signature, '/v1/gcs-sm-ns-gvt-aws-auth/login')
+Vault.auth.aws_iam(iam_role, Aws::InstanceProfileCredentials.new, nil, 'https://sts.amazonaws.com', '/v1/auth/gcs-sm-ns-gvt-aws-auth/login')
 # vault_token = Vault.auth.aws_ec2(iam_role, signature, nil) #"s.fs3SSbPSCmk7Q1yOqlN96Mee"
 
 hvault_read_vault 'Read secret kv-v2/my-secret' do
