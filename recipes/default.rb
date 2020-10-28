@@ -21,7 +21,7 @@ end
 file '/tmp/test.txt' do
 	sensitive true
 	content lazy {
-	"chef password is:#{node.run_state["kv-v2/data/my-secret"].data[:data][:password]}"
+	"chef password is:#{node.run_state["kv-v2/data/my-secret"].data[:data][:my-vault]}"
 	}
 	#action :nothing
 end
